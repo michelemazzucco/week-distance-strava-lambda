@@ -1,0 +1,16 @@
+{
+  "name": "week-distance-strava",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "deploy": "serverless deploy function -f weekDistanceStrava",
+    "invoke": "serverless invoke -f weekDistanceStrava -l"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^22.1.1"
+  }
+}

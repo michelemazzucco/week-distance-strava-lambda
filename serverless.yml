@@ -1,0 +1,28 @@
+service: weekDistanceStrava
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: prod
+  environment: 
+    STRAVA_API_KEY: ${file(./config.json):STRAVA_API_KEY}
+
+package:
+  exclude:
+    - node_modules/**
+    - package-lock.json
+    - package.json
+    - config.json
+    - utils.test.js
+  include:
+    - handler.js
+    - utils.js
+
+functions:
+  weekDistanceStrava:
+    handler: handler.run
+    events:
+      - http:
+          path: distance
+          method: get
+          cors: true
