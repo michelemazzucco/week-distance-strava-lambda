@@ -1,10 +1,13 @@
 'use strict'
-const getMonday = require('./utils.js').getMonday
-const getData = require('./utils.js').getData
-const setResponse = require('./utils.js').setResponse
-const sumDistance = require('./utils.js').sumDistance
-const parseDistance = require('./utils.js').parseDistance
-const parseDate = require('./utils.js').parseDate
+
+const { 
+  getMonday, 
+  getData, 
+  setResponse, 
+  sumDistance, 
+  parseDistance, 
+  parseDate
+} = require('./utils.js')
 
 module.exports.run = (event, context, callback) => {
   const today = new Date().getTime()

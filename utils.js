@@ -1,19 +1,18 @@
 const https = require('https')
 
-const getData = url => {
-  return new Promise((resolve, reject) => {
+const getData = url =>
+  new Promise((resolve, reject) => {
     const req = https.get(url, res => {
-      const code = res.statusCode
+      const { statusCode } = res
       let body = []
       
-      if (code < 200 || code > 299) reject(new Error(code))
+      if (statusCode < 200 || statusCode > 299) reject(new Error(statusCode))
       res.on('data', chunk => body.push(chunk))
       res.on('end', () => resolve(body))
     })
 
     req.on('error', (err) => reject(err))
   })
-}
 
 const getMonday = () => {
   const today = new Date()
@@ -24,7 +23,7 @@ const getMonday = () => {
 }
 
 const setResponse = (statusCode, body) => ({
-  statusCode: statusCode,
+  statusCode,
   headers: {
     "Access-Control-Allow-Origin" : "*",
   },
@@ -38,10 +37,10 @@ const parseDistance = d => Math.floor((d / 1000) * 100) / 100
 const parseDate = d => Math.round(d / 1000)
 
 module.exports = {
-  getData: getData,
-  getMonday: getMonday,
-  setResponse: setResponse,
-  sumDistance: sumDistance,
-  parseDistance: parseDistance,
-  parseDate: parseDate,
+  getData,
+  getMonday,
+  setResponse,
+  sumDistance,
+  parseDistance,
+  parseDate,
 }
